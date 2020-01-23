@@ -9,6 +9,10 @@
           - run:
               name: Build Docker image
               command: docker build -t spbu/cae:latest .
+              
+              name: Test Docker image core imports (NumPy, FEniCS)
+              docker run -p 8890:8892  -e USER_PASS=Scientific -d `pwd`:/opt/notebook/ spbu/cae:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\" "
+              
     workflows:
       version: 2
       build-master:
