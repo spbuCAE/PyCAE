@@ -3,7 +3,7 @@ A Multiuser CAE solution including CAD-to-FEM workflow and live in-browser 3d pr
 
 [![CircleCI](https://circleci.com/gh/spbuCAE/PyCAE.svg?style=svg)](https://circleci.com/gh/spbuCAE/PyCAE)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![License: MIT](https://img.shields.io/docker/build/olejak/pycae)](https://hub.docker.com/r/olejak/pycae)
+[![Docker Pulls](https://img.shields.io/docker/pulls/olejak/pycae)](https://hub.docker.com/r/olejak/pycae)
 
 This is ***a local team environment*** meaning one file system for all instance users. An instance is contained inside a docker container (so only folders that you explicitly provide will be visible to it). 
 
