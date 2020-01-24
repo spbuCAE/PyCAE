@@ -12,7 +12,7 @@
           - run:    
               name: Test Docker image core imports (NumPy, FEniCS)
               command: |
-                  docker run -p 8890:8892  -e USER_PASS=Scientific $IMAGE_NAME:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\"
+                  docker run -p 8890:8892  -e USER_PASS=Scientific $IMAGE_NAME:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\""
           - run:
               name: Publish Docker Image to Docker Hub
               command: |
