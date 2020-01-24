@@ -18,7 +18,7 @@
               name: Test Docker image core imports (NumPy, FEniCS)
               command: |
                   mkdir data
-                  docker run -p 8890:8892  -e USER_PASS=Scientific -d $(pwd)/data/:/opt/notebook/ spbu/cae:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\" "
+                  docker run -p 8890:8892  -e USER_PASS=Scientific spbu/cae:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\" "
               
     workflows:
       version: 2
