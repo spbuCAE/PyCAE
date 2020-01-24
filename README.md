@@ -16,6 +16,16 @@ Note that as any real CAE software docker image file is big and requires at leas
 
 ## Install
 
+### From Dockerhub
+start
+on 0.0.0.0 (localhost and public IP if node has one) 
+on port 8890 (port can be changed)
+with admin user password `Scientific`
+with shared between users directory hosted on a host node `/full/path/to/a/shared/folder/`
+```bash
+docker run -d -p 8890:8892  -e USER_PASS=Scientific -v /full/path/to/a/shared/folder/:/opt/notebooks/ olejak/pycae:latest
+```
+
 ### From source
 1) get code:
 ```bash
