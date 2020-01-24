@@ -8,10 +8,17 @@
           - setup_remote_docker
           - run:
               name: Build Docker image
-              command: docker build -t spbu/cae:latest .
+              command: docker build -t $IMAGE_NAME:latest .
+          - run:
+              name: Publish Docker Image to Docker Hub
+              command: |
+                echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+                docker push $IMAGE_NAME:latest
           - run:    
               name: Test Docker image core imports (NumPy, FEniCS)
-              command: mkdir data && docker run -p 8890:8892  -e USER_PASS=Scientific -d $(pwd)/data/:/opt/notebook/ spbu/cae:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\" "
+              command: |
+                  mkdir data
+                  docker run -p 8890:8892  -e USER_PASS=Scientific -d $(pwd)/data/:/opt/notebook/ spbu/cae:latest /bin/bash -c "python -c \"import numpy; print(numpy.__path__); from dolfin import *;\" "
               
     workflows:
       version: 2
