@@ -1,4 +1,4 @@
-from ubuntu:16.04
+from ubuntu:18.04
 maintainer OJ
 user root
 
@@ -57,7 +57,7 @@ run pip install jupyter-tabnine && \
 	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --dev-build=True --minimize=False
 	
 #Download spbuCAE/PyCAE from github if it does not exist
-#Create admin user with given password
+#Create admin user with given password 
 #Allow users group /opt/notebooks directory access
 #Start jupyterhub looking at /opt/notebooks folder for all users
 
