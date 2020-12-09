@@ -5,7 +5,7 @@ user root
 ENV USER_PASS=Scientific LANG=C.UTF-8 LC_ALL=C.UTF-8 RUNTIME=3.7 ETS_TOOLKIT=qt4 VTK=8 INSTALL_EDM_VERSION=2.0.0 PYTHONUNBUFFERED="1" PYBIND11_VERSION=2.2.3 FENICS_VERSION=2019.1.0 OMP_NUM_THREADS=4
 
 RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates software-properties-common curl grep sed dpkg \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata wget bzip2 ca-certificates software-properties-common curl grep sed dpkg \
     wget htop mc git  xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic sudo
 
 RUN add-apt-repository -y ppa:fenics-packages/fenics && add-apt-repository -y ppa:timsc/swig-3.0.12 && apt-get update
