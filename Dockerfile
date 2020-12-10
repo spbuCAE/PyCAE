@@ -8,7 +8,7 @@ RUN apt-get update --fix-missing && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata wget bzip2 ca-certificates software-properties-common curl grep sed dpkg \
     wget htop mc git  xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic sudo
 
-RUN add-apt-repository -y ppa:fenics-packages/fenics && add-apt-repository -y ppa:timsc/swig-3.0.12 && apt-get update
+RUN add-apt-repository -y ppa:fenics-packages/fenics  && apt-get update
 
 RUN apt-get install -y libglib2.0-0 libxext6 libsm6 libxrender1 \
     git mercurial subversion build-essential gmsh git \
