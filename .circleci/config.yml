@@ -3,7 +3,6 @@
       build:
         docker:
           - image: circleci/buildpack-deps:stretch
-        resource_class: medium+
         steps:
           - checkout
           - setup_remote_docker
