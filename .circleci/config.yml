@@ -8,7 +8,7 @@
           - setup_remote_docker
           - run:
               name: Build Docker image
-              command: sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && docker build -t $IMAGE_NAME:latest .
+              command: docker build -t $IMAGE_NAME:latest .
           - run:    
               name: Test Docker image core imports (NumPy, FEniCS)
               command: |
