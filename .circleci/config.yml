@@ -1,8 +1,8 @@
     version: 2
     jobs:
       build:
-        docker:
-          - image: circleci/buildpack-deps:stretch
+        machine:
+          image: ubuntu-2004:202010-01 
         steps:
           - checkout
           - setup_remote_docker
