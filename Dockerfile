@@ -35,8 +35,9 @@ run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c 
     vtk  numpy apptools envisage traitsui traits pyface configobj ipyevents xvfbwrapper itkwidgets pyvista \
 	pip conda jupyterlab=2 xeus-python=0.6.7 notebook>=6 ptvsd \
     fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
-	nbconvert pandoc   && \
-	conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
+	nbconvert pandoc
+	
+#conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 
 run conda install -y -c conda-forge python-language-server notebook jupyterhub nodejs sudospawner && \
     pip install --pre jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
@@ -61,4 +62,4 @@ run pip install jupyter-tabnine && \
 #Allow users group /opt/notebooks directory access
 #Start jupyterhub looking at /opt/notebooks folder for all users
 
-cmd  /bin/bash -c "mkdir -p /opt/jupyterhub && mkdir -p /opt/notebooks && cd  /opt/notebooks && git clone --recursive https://github.com/spbuCAE/PyCAE ; cd /opt/jupyterhub && useradd --create-home --no-log-init --shell /bin/bash -g root admin && usermod -aG sudo admin  && usermod -aG users admin &&  echo \"admin:$USER_PASS\" | chpasswd && mkdir -p /home/admin/notebooks  && chgrp -R users /opt/notebooks/ && chmod  -R g+rwx /opt/notebooks/ && jupyterhub --ip=0.0.0.0 --port=8892 --no-ssl  --JupyterHub.admin_access=True   --Authenticator.password=\"$USER_PASS\" --Authenticator.whitelist=\"{'admin'}\" --Authenticator.admin_users=\"{'admin'}\" --JupyterHub.authenticator_class='firstuseauthenticator.FirstUseAuthenticator' --Spawner.args=\"['--NotebookApp.iopub_data_rate_limit=10000000000', '--SingleUserNotebookApp.shutdown_no_activity_timeout=3600', '--MappingKernelManager.cull_interval=120']\"  --JupyterHub.cleanup_proxy=True --Spawner.notebook_dir='/opt/notebooks/' --Spawner.default_url='/lab' --FirstUseAuthenticator.create_users=False"
+cmd  /bin/bash -c "mkdir -p /opt/jupyterhub && mkdir -p /opt/notebooks && cd  /opt/notebooks && git clone --recursive https://github.com/spbuCAE/PyCAE ; cd /opt/jupyterhub && useradd --create-home --no-log-init --shell /bin/bash -g root admin && usermod -aG sudo admin  && usermod -aG users admin &&  echo \"admin:\$USER_PASS\" | chpasswd && mkdir -p /home/admin/notebooks  && chgrp -R users /opt/notebooks/ && chmod  -R g+rwx /opt/notebooks/ && jupyterhub --ip=0.0.0.0 --port=8892 --no-ssl  --JupyterHub.admin_access=True   --Authenticator.password=\"\$USER_PASS\" --Authenticator.whitelist=\"{'admin'}\" --Authenticator.admin_users=\"{'admin'}\" --JupyterHub.authenticator_class='firstuseauthenticator.FirstUseAuthenticator' --Spawner.args=\"['--NotebookApp.iopub_data_rate_limit=10000000000', '--SingleUserNotebookApp.shutdown_no_activity_timeout=3600', '--MappingKernelManager.cull_interval=120']\"  --JupyterHub.cleanup_proxy=True --Spawner.notebook_dir='/opt/notebooks/' --Spawner.default_url='/lab' --FirstUseAuthenticator.create_users=False"
