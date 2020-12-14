@@ -25,7 +25,7 @@ RUN cp docker-xvfb/xvfb_init /etc/init.d/xvfb && chmod a+x /etc/init.d/xvfb && c
 ENV DISPLAY :99
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/archive/Anaconda3-5.3.1-Linux-x86_64.sh -O ~/anaconda.sh && \
+    wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
@@ -37,7 +37,7 @@ run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c 
     fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	nbconvert pandoc
 	
-#conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
+#run conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 
 run conda install -y -c conda-forge python-language-server notebook jupyterhub nodejs sudospawner && \
     pip install --pre jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
