@@ -8,6 +8,7 @@
           - run:
               name: Build Docker image
               command: docker build -t $IMAGE_NAME:latest .
+              no_output_timeout: 17600
           - run:    
               name: Test Docker image core imports (NumPy, FEniCS)
               command: |
