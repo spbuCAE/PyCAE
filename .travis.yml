@@ -7,9 +7,9 @@ services:
   - docker
 
 before_install:
-- travis_wait docker docker build -t $IMAGE_NAME:latest .
+- travis_wait "docker docker build -t $IMAGE_NAME:latest ."
 - echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
 script:
 - docker ps
-- travis_wait docker push $IMAGE_NAME:latest
+- travis_wait "docker push $IMAGE_NAME:latest"
