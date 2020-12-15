@@ -30,19 +30,19 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
 
-run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery CadQuery::pythonocc-core CadQuery::CadQuery=master \
-	   mayavi=4.7.1 jupyterlab=2 xeus-python=0.6.7 notebook>=6 
+run conda install -y -vv  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery CadQuery::pythonocc-core CadQuery::CadQuery=master \
+	   mayavi>=4.7.1 jupyterlab>=2 xeus-python>=0.6.7 notebook>=6 vtk  numpy
   
-run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery fenics  \
+run conda install -y -vv   -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery fenics  \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin 
 	
-run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery gmsh python-gmsh openmp   vtk  numpy apptools envisage traitsui \
+run conda install -y -vv  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj ipyevents xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc
 	
 #run conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 
-run conda install -y -c conda-forge python-language-server notebook jupyterhub nodejs sudospawner && \
+run conda install -y -vv -c conda-forge python-language-server notebook jupyterhub nodejs sudospawner && \
     pip install --pre jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
     jupyter labextension install @krassowski/jupyterlab-lsp
 
