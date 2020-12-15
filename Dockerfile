@@ -30,7 +30,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
 run conda config --set allow_conda_downgrades true
-run conda install  -y -v mamba -c conda-forge/label/mamba-alpha -c conda-forge
+run conda install  -y -v mamba -c conda-forge
 run conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 run mamba install -y -v  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery CadQuery::pythonocc-core CadQuery::CadQuery=master \
 	   mayavi>=4.7.1 jupyterlab>=2 xeus-python>=0.6.7 notebook>=6 vtk  numpy
