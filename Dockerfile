@@ -35,13 +35,13 @@ run mamba install -y -vv  -c conda-forge pythonocc-core CadQuery \
 	   mayavi>=4.7.1 jupyterlab>=2 xeus-python>=0.6.7 notebook>=6 vtk  numpy fenics  \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
-	traits pyface configobj ipyevents xvfbwrapper itkwidgets pyvista \
+	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc
 	
 #run conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 
 run mamba install -y -vv -c conda-forge python-language-server notebook jupyterhub nodejs sudospawner && \
-    pip install --pre jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
+    pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
     jupyter labextension install @krassowski/jupyterlab-lsp
 
 run pip install jupyter-tabnine && \
