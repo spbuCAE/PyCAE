@@ -30,12 +30,15 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
 
-run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery CadQuery::pythonocc-core CadQuery::CadQuery=master fenics mayavi=4.7.1 \
-	gmsh python-gmsh openmp \
-    vtk  numpy apptools envisage traitsui traits pyface configobj ipyevents xvfbwrapper itkwidgets pyvista \
-	pip conda jupyterlab=2 xeus-python=0.6.7 notebook>=6 ptvsd \
-    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
-	nbconvert pandoc
+run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery CadQuery::pythonocc-core CadQuery::CadQuery=master \
+	   mayavi=4.7.1 jupyterlab=2 xeus-python=0.6.7 notebook>=6 
+  
+run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery fenics  \
+	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin 
+	
+run conda install  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery gmsh python-gmsh openmp   vtk  numpy apptools envisage traitsui \
+	traits pyface configobj ipyevents xvfbwrapper itkwidgets pyvista \
+	pip ptvsd nbconvert pandoc
 	
 #run conda update  -c conda-forge -c conda-forge/label/prerelease-jupyterlab -c CadQuery -y --all
 
