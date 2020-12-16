@@ -41,7 +41,7 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
 run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
     
-run jupyter labextension install @krassowski/jupyterlab-lsp
+#run jupyter labextension install @krassowski/jupyterlab-lsp
 run pip install nodejs npm jupyter-tabnine && \
     jupyter labextension install @jupyterlab/debugger && \
     jupyter nbextension install --py jupyter_tabnine && \
