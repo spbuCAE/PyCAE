@@ -32,16 +32,16 @@ ENV PATH /opt/conda/bin:$PATH
 run conda config --set allow_conda_downgrades true
 run conda install  -y  mamba -c conda-forge
 run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
-	   jupyterlab>=2 xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy fenics  \
+	   'jupyterlab>=2.2,<3.0.0a0' xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy fenics  \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub nodejs sudospawner npm
 	
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
-run pip install --pre ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
-    jupyter labextension install @krassowski/jupyterlab-lsp
-run pip install nodejs npm
+run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
+    
+run jupyter labextension install @krassowski/jupyterlab-lsp
 run pip install nodejs npm jupyter-tabnine && \
     jupyter labextension install @jupyterlab/debugger && \
     jupyter nbextension install --py jupyter_tabnine && \
