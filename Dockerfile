@@ -19,7 +19,7 @@ RUN apt-get install -y libglib2.0-0 libxext6 libsm6 libxrender1 \
     g++-multilib libgmp-dev libmpfr-dev libmpc-dev lib32z1 lib32ncurses5 \
     libgmp-dev libmpfr-dev fenics \
 	texlive-xetex texlive-fonts-recommended texlive-generic-recommended
-run -sL https://deb.nodesource.com/setup_15.x | sudo -E bash - && apt-get install -y nodejs
+run curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash - && apt-get install -y nodejs
 
 RUN git clone --recursive https://github.com/samgiles/docker-xvfb
 RUN cp docker-xvfb/xvfb_init /etc/init.d/xvfb && chmod a+x /etc/init.d/xvfb && cp docker-xvfb/xvfb_daemon_run /usr/bin/xvfb-daemon-run && chmod a+x /usr/bin/xvfb-daemon-run
