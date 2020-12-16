@@ -42,21 +42,22 @@ run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip instal
 run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
     
 #run jupyter labextension install @krassowski/jupyterlab-lsp
-run pip install jupyter-tabnine && \
-    jupyter labextension install @jupyterlab/debugger && \
+run pip install jupyter-tabnine 
+run    jupyter labextension install @jupyterlab/debugger && \
     jupyter nbextension install --py jupyter_tabnine && \
     jupyter nbextension enable --py jupyter_tabnine && \
     jupyter serverextension enable --py jupyter_tabnine && \
     jupyter nbextension enable --py widgetsnbextension && \
     jupyter nbextension enable --py ipyevents && \
     jupyter nbextension install --py mayavi --user && \
-    jupyter nbextension enable --py mayavi --user && \
-    wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/environment.yml && \
+    jupyter nbextension enable --py mayavi --user
+
+ run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/environment.yml && \
     wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/labextensions.txt && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib jupyterlab-datawidgets itkwidgets && \
-	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --dev-build=True --minimize=False
+	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --minimize=False
 	
-#Download spbuCAE/PyCAE from github if it does not exist
+#Download spbuCAE/PyCAE does not exist
 #Create admin user with given password 
 #Allow users group /opt/notebooks directory access
 #Start jupyterhub looking at /opt/notebooks folder for all users
