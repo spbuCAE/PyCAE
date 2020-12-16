@@ -6,7 +6,7 @@ ENV USER_PASS=Scientific LANG=C.UTF-8 LC_ALL=C.UTF-8 RUNTIME=3.7 ETS_TOOLKIT=qt4
 
 RUN apt-get update --fix-missing && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata wget bzip2 ca-certificates software-properties-common curl grep sed dpkg \
-    wget htop mc git  xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic sudo nodejs npm
+    wget htop mc git  xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic sudo
 
 RUN add-apt-repository -y ppa:fenics-packages/fenics  && apt-get update
 
@@ -43,9 +43,10 @@ run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyt
     
 #run jupyter labextension install @krassowski/jupyterlab-lsp
 run pip install jupyter-tabnine 
-run    jupyter labextension install @jupyterlab/debugger 
+run nodejs --version
+run jupyter labextension install @jupyterlab/debugger 
 
-run   jupyter nbextension install --py jupyter_tabnine && \
+run jupyter nbextension install --py jupyter_tabnine && \
     jupyter nbextension enable --py jupyter_tabnine && \
     jupyter serverextension enable --py jupyter_tabnine && \
     jupyter nbextension enable --py widgetsnbextension && \
