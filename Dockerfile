@@ -19,9 +19,7 @@ RUN apt-get install -y libglib2.0-0 libxext6 libsm6 libxrender1 \
     g++-multilib libgmp-dev libmpfr-dev libmpc-dev lib32z1 lib32ncurses5 \
     libgmp-dev libmpfr-dev fenics \
 	texlive-xetex texlive-fonts-recommended texlive-generic-recommended
-RUN  npm cache clean -f && sudo npm install -g n &&  sudo n latest
 
-sudo n latest
 RUN git clone --recursive https://github.com/samgiles/docker-xvfb
 RUN cp docker-xvfb/xvfb_init /etc/init.d/xvfb && chmod a+x /etc/init.d/xvfb && cp docker-xvfb/xvfb_daemon_run /usr/bin/xvfb-daemon-run && chmod a+x /usr/bin/xvfb-daemon-run
 ENV DISPLAY :99
@@ -38,13 +36,13 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
-	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub nodejs sudospawner
+	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub nodejs sudospawner npm
 	
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
 run pip install --pre ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner && \
     jupyter labextension install @krassowski/jupyterlab-lsp
-
-run pip install jupyter-tabnine && \
+run pip install nodejs npm
+run pip install nodejs npm jupyter-tabnine && \
     jupyter labextension install @jupyterlab/debugger && \
     jupyter nbextension install --py jupyter_tabnine && \
     jupyter nbextension enable --py jupyter_tabnine && \
