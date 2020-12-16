@@ -42,7 +42,7 @@ run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip instal
 run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
     
 #run jupyter labextension install @krassowski/jupyterlab-lsp
-run pip install nodejs npm jupyter-tabnine && \
+run pip install jupyter-tabnine && \
     jupyter labextension install @jupyterlab/debugger && \
     jupyter nbextension install --py jupyter_tabnine && \
     jupyter nbextension enable --py jupyter_tabnine && \
