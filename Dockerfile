@@ -43,16 +43,18 @@ run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyt
     
 #run jupyter labextension install @krassowski/jupyterlab-lsp
 run pip install jupyter-tabnine 
-run    jupyter labextension install @jupyterlab/debugger && \
-    jupyter nbextension install --py jupyter_tabnine && \
+run    jupyter labextension install @jupyterlab/debugger 
+
+run   jupyter nbextension install --py jupyter_tabnine && \
     jupyter nbextension enable --py jupyter_tabnine && \
     jupyter serverextension enable --py jupyter_tabnine && \
     jupyter nbextension enable --py widgetsnbextension && \
-    jupyter nbextension enable --py ipyevents && \
-    jupyter nbextension install --py mayavi --user && \
+    jupyter nbextension enable --py ipyevents 
+
+run   jupyter nbextension install --py mayavi --user && \
     jupyter nbextension enable --py mayavi --user
 
- run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/environment.yml && \
+run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/environment.yml && \
     wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.4/labextensions.txt && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib jupyterlab-datawidgets itkwidgets && \
 	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --minimize=False
