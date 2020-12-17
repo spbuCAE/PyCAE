@@ -2,7 +2,7 @@ from ubuntu:16.04
 maintainer OJ
 user root
 
-ENV USER_PASS=Scientific LANG=C.UTF-8 LC_ALL=C.UTF-8 RUNTIME=3.7 ETS_TOOLKIT=qt4 VTK=8 INSTALL_EDM_VERSION=2.0.0 PYTHONUNBUFFERED="1" PYBIND11_VERSION=2.2.3 FENICS_VERSION=2019.1.0 OMP_NUM_THREADS=4
+ENV USER_PASS=Scientific LANG=C.UTF-8 LC_ALL=C.UTF-8 RUNTIME=3.7 ETS_TOOLKIT=qt4 VTK=8 INSTALL_EDM_VERSION=2.0.0 PYTHONUNBUFFERED="1" PYBIND11_VERSION=2.2.3 FENICS_VERSION=2019.1.0 OMP_NUM_THREADS=4 DOLFIN_VERSION="2019.1.0.post0"  PYPI_FENICS_VERSION=">=2019.1.0,<2019.2.0" MSHR_VERSION="2019.1.0"
 
 RUN apt-get update --fix-missing && \
     DEBIAN_FRONTEND="noninteractive" apt-get install -y tzdata wget bzip2 ca-certificates software-properties-common curl grep sed dpkg \
@@ -99,7 +99,7 @@ RUN /bin/bash -c "PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install 'fenics${
                   mkdir -p /usr/local/share/dolfin/demo && \
                   mv /tmp/demo /usr/local/share/dolfin/demo/cpp && \
                   cd ../python && \
-                  PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install . && \
+                  pip install . && \
                   cd demo && \
                   python3 generate-demo-files.py && \
                   mkdir -p /usr/local/share/dolfin/demo/python && \
@@ -115,9 +115,8 @@ RUN /bin/bash -c "PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install 'fenics${
                   make && \
                   make install && \
                   cd ../python && \
-                  PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install . && \
-                  ldconfig && \
-                  rm -rf /tmp/*"
+                  pip install . && \
+                  ldconfig 
 
 run which python && python -c "import numpy; print(numpy.__path__); from dolfin import *;"
 
