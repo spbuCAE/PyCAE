@@ -41,7 +41,8 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner npm nodejs>=10.0.0
-	
+run which python && python -c "import numpy; print(numpy.__path__); from dolfin import *;"
+
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
 run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
     
