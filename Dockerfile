@@ -1,4 +1,4 @@
-from ubuntu:18.04
+from ubuntu:16.04
 maintainer OJ
 user root
 
@@ -33,7 +33,7 @@ ENV PATH /opt/conda/bin:$PATH
 run conda config --set allow_conda_downgrades true
 run conda install  -y  mamba -c conda-forge
 run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
-	   'jupyterlab>=2.2,<3.0.0a0' xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy fenics  \
+	   'jupyterlab>=2.2,<3.0.0a0' xeus-python=0.6.7 notebook>=6 vtk PyQt5 numpy fenics  \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
@@ -57,7 +57,8 @@ run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v1.0.0
 wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v1.0.0/labextensions.txt && \
 	jupyter labextension install jupyter-matplotlib jupyterlab-datawidgets itkwidgets && \
 	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --dev-build=False --minimize=False
-	
+run which python
+run which python3
 #Download spbuCAE/PyCAE does not exist
 #Create admin user with given password 
 #Allow users group /opt/notebooks directory access
