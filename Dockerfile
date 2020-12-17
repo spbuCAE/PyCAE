@@ -56,12 +56,12 @@ run pip install jupyter-tabnine && \
     jupyter nbextension install --py mayavi --user && \
     jupyter nbextension enable --py mayavi --user
 
-run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.5/environment.yml && \
-	wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.5/labextensions.txt && \
-	jupyter labextension install jupyter-matplotlib jupyterlab-datawidgets itkwidgets 
-	
-run jupyter-labextension install --no-build $(cat labextensions.txt)
-run jupyter lab build --dev-build=False --minimize=False
+run  wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v2.0.0-beta3/environment.yml && \
+wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v2.0.0-beta3/labextensions.txt 
+run jupyter-labextension install  $(cat labextensions.txt)
+run jupyter lab build --dev-build=True --minimize=False
+
+run jupyter labextension install jupyter-matplotlib jupyterlab-datawidgets itkwidgets 
 
 run which python
 run which python3
