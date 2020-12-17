@@ -40,7 +40,7 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 	    fenics-ffc fenics-dijitso fenics-fiat fenics-ufl fenics-dolfin fenics-libdolfin \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
-	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner
+	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner npm nodejs>=10.0.0
 	
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
 run pip install --pre  ipyevents jupyter-lsp jupyterhub-dummyauthenticator jupyterhub-firstuseauthenticator jupyterhub-systemdspawner
