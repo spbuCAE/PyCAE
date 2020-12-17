@@ -22,6 +22,50 @@ RUN apt-get install -y libglib2.0-0 libxext6 libsm6 libxrender1 \
 	texlive-xetex texlive-fonts-recommended texlive-generic-recommended
 run curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash - && apt-get install -y nodejs
 
+# Non-Python utilities and libraries
+RUN apt-get -qq update && \
+    apt-get -y --with-new-pkgs \
+        -o Dpkg::Options::="--force-confold" upgrade && \
+    apt-get -y install curl && \
+    curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && \
+    apt-get -y install \
+        bison \
+        ccache \
+        cmake \
+        doxygen \
+        flex \
+        g++ \
+        gfortran \
+        git \
+        git-lfs \
+        graphviz \
+        libboost-filesystem-dev \
+        libboost-iostreams-dev \
+        libboost-math-dev \
+        libboost-program-options-dev \
+        libboost-system-dev \
+        libboost-thread-dev \
+        libboost-timer-dev \
+        libeigen3-dev \
+        libfreetype6-dev \
+        liblapack-dev \
+        libmpich-dev \
+        libopenblas-dev \
+        libpcre3-dev \
+        libpng-dev \
+        libhdf5-mpich-dev \
+        libgmp-dev \
+        libcln-dev \
+        libmpfr-dev \
+        man \
+        mpich \
+        nano \
+        pkg-config \
+        wget \
+        bash-completion && \
+    git lfs install 
+    
+
 RUN git clone --recursive https://github.com/samgiles/docker-xvfb
 RUN cp docker-xvfb/xvfb_init /etc/init.d/xvfb && chmod a+x /etc/init.d/xvfb && cp docker-xvfb/xvfb_daemon_run /usr/bin/xvfb-daemon-run && chmod a+x /usr/bin/xvfb-daemon-run
 ENV DISPLAY :99
@@ -41,6 +85,40 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 	    gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner npm nodejs>=10.0.0
+
+RUN /bin/bash -c "PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install 'fenics${PYPI_FENICS_VERSION}' && \
+                  git clone https://bitbucket.org/fenics-project/dolfin.git && \
+                  cd dolfin && \
+                  git checkout ${DOLFIN_VERSION} && \
+                  mkdir build && \
+                  cd build && \
+                  cmake ../ && \
+                  make && \
+                  make install && \
+                  mv /usr/local/share/dolfin/demo /tmp/demo && \
+                  mkdir -p /usr/local/share/dolfin/demo && \
+                  mv /tmp/demo /usr/local/share/dolfin/demo/cpp && \
+                  cd ../python && \
+                  PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install . && \
+                  cd demo && \
+                  python3 generate-demo-files.py && \
+                  mkdir -p /usr/local/share/dolfin/demo/python && \
+                  cp -r documented /usr/local/share/dolfin/demo/python && \
+                  cp -r undocumented /usr/local/share/dolfin/demo/python && \
+                  cd /tmp/ && \
+                  git clone https://bitbucket.org/fenics-project/mshr.git && \
+                  cd mshr && \
+                  git checkout ${MSHR_VERSION} && \
+                  mkdir build && \
+                  cd build && \
+                  cmake ../ && \
+                  make && \
+                  make install && \
+                  cd ../python && \
+                  PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install . && \
+                  ldconfig && \
+                  rm -rf /tmp/*"
+
 run which python && python -c "import numpy; print(numpy.__path__); from dolfin import *;"
 
 run git clone https://github.com/enthought/mayavi.git && cd mayavi && pip install -r requirements.txt && python setup.py install
