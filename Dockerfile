@@ -56,10 +56,13 @@ run pip install jupyter-tabnine && \
     jupyter nbextension install --py mayavi --user && \
     jupyter nbextension enable --py mayavi --user
 
-run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v1.0.0/environment.yml && \
-wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v1.0.0/labextensions.txt && \
-	jupyter labextension install jupyter-matplotlib jupyterlab-datawidgets itkwidgets && \
-	jupyter-labextension install --no-build $(cat labextensions.txt) && jupyter lab build --dev-build=False --minimize=False
+run   wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.5/environment.yml && \
+	wget https://raw.githubusercontent.com/bernhard-42/jupyter-cadquery/v0.9.5/labextensions.txt && \
+	jupyter labextension install jupyter-matplotlib jupyterlab-datawidgets itkwidgets 
+	
+run jupyter-labextension install --no-build $(cat labextensions.txt)
+run jupyter lab build --dev-build=False --minimize=False
+
 run which python
 run which python3
 #Download spbuCAE/PyCAE does not exist
