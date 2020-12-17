@@ -86,7 +86,7 @@ run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner npm nodejs>=10.0.0
 
-RUN /bin/bash -c "PIP_NO_CACHE_DIR=off ${FENICS_PYTHON} -m pip install 'fenics${PYPI_FENICS_VERSION}' && \
+RUN /bin/bash -c "pip install 'fenics${PYPI_FENICS_VERSION}' && \
                   git clone https://bitbucket.org/fenics-project/dolfin.git && \
                   cd dolfin && \
                   git checkout ${DOLFIN_VERSION} && \
