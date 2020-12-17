@@ -1,4 +1,4 @@
-from ubuntu:16.04
+from ubuntu:18.04
 maintainer OJ
 user root
 
@@ -9,6 +9,7 @@ RUN apt-get update --fix-missing && \
     wget htop mc git  xvfb x11vnc x11-xkb-utils xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic sudo
 
 RUN add-apt-repository -y ppa:fenics-packages/fenics  && apt-get update
+
 
 RUN apt-get install -y libglib2.0-0 libxext6 libsm6 libxrender1 \
     git mercurial subversion build-essential gmsh git \
@@ -30,6 +31,8 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh
 ENV PATH /opt/conda/bin:$PATH
+RUN echo "source activate base" > ~/.bashrc
+SHELL ["conda", "run", "-n", "base",  "/bin/bash", "--login", "-c"]
 run conda config --set allow_conda_downgrades true
 run conda install  -y  mamba -c conda-forge
 run mamba install -y -vv  -c conda-forge   pythonocc-core CadQuery \
