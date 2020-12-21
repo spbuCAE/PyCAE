@@ -80,10 +80,11 @@ SHELL ["conda", "run", "-n", "base",  "/bin/bash", "--login", "-c"]
 run conda config --set allow_conda_downgrades true
 run conda install  -y  mamba -c conda-forge
 run conda install -y -v  -c conda-forge  pythonocc-core CadQuery \
-	   'jupyterlab>=2.2,<3.0.0a0' xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy
-	    gmsh python-gmsh openmp    apptools envisage traitsui \
+	   'jupyterlab>=2.2,<3.0.0a0' xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy \
+	 gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
 	pip ptvsd nbconvert pandoc python-language-server notebook jupyterhub sudospawner npm nodejs>=10.0.0
+
 RUN npm install -g configurable-http-proxy
 RUN pip install 'fenics${PYPI_FENICS_VERSION}' && \
                   git clone https://bitbucket.org/fenics-project/dolfin.git && \
