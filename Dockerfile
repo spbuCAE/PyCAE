@@ -79,7 +79,7 @@ RUN echo "source activate base" > ~/.bashrc
 SHELL ["conda", "run", "-n", "base",  "/bin/bash", "--login", "-c"]
 run conda config --set allow_conda_downgrades true
 run conda install  -y  mamba -c conda-forge
-run conda install -y -v  -c conda-forge  pythonocc-core CadQuery \
+run conda install -y -v python=3.6  -c conda-forge  pythonocc-core CadQuery \
 	   'jupyterlab>=2.2,<3.0.0a0' xeus-python>=0.6.7 notebook>=6 vtk PyQt5 numpy \
 	 gmsh python-gmsh openmp    apptools envisage traitsui \
 	traits pyface configobj xvfbwrapper itkwidgets pyvista \
